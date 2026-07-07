@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEMA — Learn the language of modern business.</title>
+<meta name="description" content="Business English for people building the future of AI, sales, marketing and online business.">
+
+<!--
+======================================================================
+  BEMA LANDING PAGE — EDIT LINKS HERE
+======================================================================
+  All three links live in ONE place: the CONFIG object inside the
+  <script> tag near the bottom of </body>. Look for "LINKS CONFIG".
+  Change them there and every button/icon on the page updates itself.
+
+  SKOOL_LINK  -> your Skool community
+  TIKTOK_LINK -> your TikTok profile
+  PDF_LINK    -> your free lead magnet (upload the PDF next to this
+                 index.html file when you deploy to Cloudflare Pages,
+                 e.g. /bema-power-words-swipe-file.pdf)
+======================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --obsidian:#111111;
+    --white:#ffffff;
+    --paper:#fafafa;
+    --red:#c8102e;
+    --red-dim:#a50d26;
+    --gold:#c9a84c;
+    --gray-600:#68686d;
+    --gray-400:#9a9a9f;
+    --line:#ececec;
+    --line-strong:#e0e0e0;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --radius: 14px;
+    --max: 1180px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    font-family:var(--body);
+    color:var(--obsidian);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  ::selection{ background:var(--gold); color:var(--obsidian); }
+
+  :focus-visible{
+    outline:2px solid var(--red);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  /* ================= NAV ================= */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .logo{
+    font-family:var(--display); font-weight:700; font-size:20px;
+    letter-spacing:0.02em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{ width:7px; height:7px; border-radius:50%; background:var(--red); display:inline-block; }
+  .nav-cta{
+    display:inline-flex; align-items:center;
+    background:var(--obsidian); color:#fff;
+    padding:10px 20px; border-radius:999px;
+    font-size:14px; font-weight:600;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .nav-cta:hover{ background:var(--red); transform:translateY(-1px); }
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    padding:104px 0 88px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:-20% -10% auto -10%;
+    height:640px;
+    background:
+      radial-gradient(520px 320px at 18% 10%, rgba(200,16,46,0.07), transparent 70%),
+      radial-gradient(560px 340px at 82% 0%, rgba(201,168,76,0.10), transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero-inner{ position:relative; z-index:1; text-align:center; }
+
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12px; letter-spacing:.04em;
+    color:var(--gray-600);
+    background:var(--paper);
+    border:1px solid var(--line-strong);
+    padding:7px 14px; border-radius:999px;
+    margin-bottom:28px;
+  }
+  .badge .pulse{
+    width:6px; height:6px; border-radius:50%; background:var(--red);
+    box-shadow:0 0 0 0 rgba(200,16,46,.5);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(200,16,46,.45); }
+    70%{ box-shadow:0 0 0 8px rgba(200,16,46,0); }
+    100%{ box-shadow:0 0 0 0 rgba(200,16,46,0); }
+  }
+
+  h1.headline{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(38px, 6vw, 76px);
+    line-height:1.04;
+    letter-spacing:-0.02em;
+    max-width:920px;
+    margin:0 auto 26px;
+  }
+  h1.headline .u{
+    position:relative;
+    white-space:nowrap;
+  }
+  h1.headline .u::after{
+    content:"";
+    position:absolute; left:2px; right:2px; bottom:6px;
+    height:0.24em;
+    background:var(--gold);
+    opacity:.55;
+    z-index:-1;
+    border-radius:3px;
+  }
+
+  .subhead{
+    font-size:clamp(16px, 2vw, 19px);
+    color:var(--gray-600);
+    max-width:560px;
+    margin:0 auto 40px;
+  }
+
+  .cta-row{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:64px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 26px; border-radius:12px;
+    font-size:15px; font-weight:600;
+    transition:transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+  }
+  .btn-primary{
+    background:var(--red); color:#fff;
+    box-shadow:0 10px 24px -10px rgba(200,16,46,.55);
+  }
+  .btn-primary:hover{ background:var(--red-dim); transform:translateY(-2px); box-shadow:0 14px 28px -10px rgba(200,16,46,.6); }
+  .btn-secondary{
+    background:#fff; color:var(--obsidian);
+    border:1.5px solid var(--line-strong);
+  }
+  .btn-secondary:hover{ border-color:var(--obsidian); transform:translateY(-2px); }
+  .btn svg{ width:16px; height:16px; }
+
+  /* ---- Decoder signature element ---- */
+  .decoder{
+    max-width:640px; margin:0 auto;
+    background:var(--obsidian);
+    border-radius:16px;
+    padding:22px 24px;
+    text-align:left;
+    box-shadow:0 30px 60px -25px rgba(17,17,17,.45);
+  }
+  .decoder-top{
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:16px;
+  }
+  .decoder-top span{ width:9px; height:9px; border-radius:50%; background:#3a3a3a; }
+  .decoder-top .lbl{
+    margin-left:8px; font-family:var(--mono); font-size:11.5px; color:#7d7d7d; letter-spacing:.04em;
+  }
+  .decoder-line{
+    display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:15px;
+    min-height:52px;
+  }
+  .decoder-term{ color:var(--gold); font-weight:500; }
+  .decoder-arrow{ color:#555; }
+  .decoder-def{ color:#e7e7e7; }
+  .decoder-cursor{
+    display:inline-block; width:8px; height:16px; background:var(--red);
+    animation:blink 1s steps(1) infinite; vertical-align:middle;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ================= SECTION SHARED ================= */
+  section{ padding:104px 0; }
+  .section-alt{ background:var(--paper); }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--red); font-weight:500; margin-bottom:14px; display:block;
+  }
+  h2.h2{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(28px, 3.6vw, 44px);
+    letter-spacing:-0.015em;
+    line-height:1.12;
+    max-width:680px;
+  }
+  .section-head{ margin-bottom:56px; }
+  .section-head p.lede{
+    color:var(--gray-600); font-size:17px; max-width:540px; margin-top:16px;
+  }
+
+  /* ================= PROBLEM ================= */
+  .problem-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+  }
+  .old-new{
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .compare-row{
+    display:grid; grid-template-columns:1fr 20px 1fr; align-items:center; gap:10px;
+    padding:16px 18px; border:1px solid var(--line); border-radius:12px; background:#fff;
+  }
+  .compare-row .old{ color:var(--gray-400); font-size:14.5px; text-decoration:line-through; text-decoration-color:var(--gray-400); }
+  .compare-row .new{ color:var(--obsidian); font-weight:600; font-size:14.5px; }
+  .compare-row .arrow{ color:var(--gold); text-align:center; }
+
+  .term-cloud{ display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+  .term-pill{
+    font-family:var(--mono); font-size:13px;
+    border:1px solid var(--line-strong);
+    padding:8px 14px; border-radius:999px;
+    background:#fff; color:var(--obsidian);
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .term-pill:hover{ border-color:var(--gold); transform:translateY(-2px); }
+
+  /* ================= WHAT IS BEMA — cards ================= */
+  .card-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:18px;
+  }
+  .pillar-card{
+    background:#fff; border:1px solid var(--line);
+    border-radius:var(--radius); padding:26px 22px;
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .pillar-card:hover{
+    border-color:transparent;
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px -24px rgba(17,17,17,.25);
+  }
+  .pillar-card .num{
+    font-family:var(--mono); font-size:12px; color:var(--gray-400); margin-bottom:14px; display:block;
+  }
+  .pillar-card h3{
+    font-family:var(--display); font-size:18px; font-weight:600; margin-bottom:8px;
+  }
+  .pillar-card p{ font-size:14px; color:var(--gray-600); }
+  .pillar-card.accent{ background:var(--obsidian); border-color:var(--obsidian); }
+  .pillar-card.accent h3{ color:#fff; }
+  .pillar-card.accent p{ color:#b8b8b8; }
+  .pillar-card.accent .num{ color:var(--gold); }
+
+  /* ================= COMMUNITY ================= */
+  .community{ background:var(--obsidian); color:#fff; }
+  .community .eyebrow{ color:var(--gold); }
+  .community h2.h2{ color:#fff; }
+  .community .section-head p.lede{ color:#a9a9a9; }
+
+  .mock-grid{
+    display:grid; grid-template-columns:1.2fr 1fr; gap:20px; margin-top:52px;
+  }
+  .mock-panel{
+    background:#191919; border:1px solid #2b2b2b; border-radius:16px;
+    padding:22px; position:relative; overflow:hidden;
+  }
+  .mock-panel .mock-head{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:11.5px; color:#8a8a8a; margin-bottom:18px;
+  }
+  .mock-row{
+    display:flex; align-items:center; gap:12px;
+    padding:12px 0; border-top:1px solid #2b2b2b;
+  }
+  .mock-row:first-of-type{ border-top:none; }
+  .mock-avatar{
+    width:30px; height:30px; border-radius:50%;
+    background:linear-gradient(135deg, var(--red), var(--gold));
+    flex-shrink:0;
+  }
+  .mock-name{ font-size:13.5px; font-weight:600; color:#fff; }
+  .mock-sub{ font-size:12px; color:#8a8a8a; margin-top:2px; }
+  .mock-tag{
+    margin-left:auto; font-family:var(--mono); font-size:10.5px;
+    color:var(--gold); border:1px solid rgba(201,168,76,.35);
+    padding:4px 9px; border-radius:999px; white-space:nowrap;
+  }
+  .progress-track{
+    height:6px; background:#2b2b2b; border-radius:99px; overflow:hidden; margin-top:8px;
+  }
+  .progress-fill{ height:100%; background:linear-gradient(90deg, var(--red), var(--gold)); border-radius:99px; }
+
+  /* ================= HOW IT WORKS ================= */
+  .steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; counter-reset:step;
+  }
+  .step{
+    padding:32px 26px; border-radius:var(--radius); border:1px solid var(--line);
+    position:relative;
+  }
+  .step .step-num{
+    font-family:var(--display); font-weight:700; font-size:40px; color:var(--line-strong);
+    line-height:1; margin-bottom:20px;
+  }
+  .step h3{ font-family:var(--display); font-size:18px; font-weight:600; margin-bottom:10px; }
+  .step p{ font-size:14.5px; color:var(--gray-600); }
+  .step-connector{
+    position:absolute; top:44px; right:-24px; width:24px; height:1px; background:var(--line-strong);
+  }
+  .step:last-child .step-connector{ display:none; }
+
+  /* ================= PRICING ================= */
+  .price-wrap{ display:flex; justify-content:center; }
+  .price-card{
+    width:100%; max-width:440px;
+    background:#fff; border:1px solid var(--line-strong);
+    border-radius:20px; padding:44px 40px;
+    box-shadow:0 30px 70px -40px rgba(17,17,17,.3);
+    position:relative;
+  }
+  .price-card::before{
+    content:""; position:absolute; inset:0; border-radius:20px; padding:1px;
+    background:linear-gradient(135deg, rgba(200,16,46,.35), rgba(201,168,76,.35));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    pointer-events:none;
+  }
+  .price-name{ font-family:var(--mono); font-size:13px; color:var(--gray-600); letter-spacing:.04em; margin-bottom:10px; }
+  .price-amount{ font-family:var(--display); font-size:52px; font-weight:700; letter-spacing:-0.02em; }
+  .price-amount span{ font-size:17px; font-weight:500; color:var(--gray-600); }
+  .price-list{ list-style:none; margin:28px 0 32px; display:flex; flex-direction:column; gap:13px; }
+  .price-list li{ display:flex; align-items:flex-start; gap:10px; font-size:14.5px; color:var(--obsidian); }
+  .price-list svg{ flex-shrink:0; width:17px; height:17px; margin-top:2px; color:var(--red); }
+  .price-card .btn-primary{ width:100%; justify-content:center; }
+  .price-note{ text-align:center; font-size:12.5px; color:var(--gray-400); margin-top:14px; }
+
+  /* ================= FINAL CTA ================= */
+  .final-cta{
+    text-align:center;
+    background:linear-gradient(180deg, #fff, var(--paper));
+  }
+  .final-cta h2.h2{ margin:0 auto 32px; text-align:center; max-width:640px; }
+
+  /* ================= FOOTER ================= */
+  footer{ border-top:1px solid var(--line); padding:44px 0; }
+  .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
+  }
+  .foot-links{ display:flex; align-items:center; gap:22px; }
+  .foot-links a{ font-size:14px; color:var(--gray-600); transition:color .2s ease; display:flex; align-items:center; gap:7px; }
+  .foot-links a:hover{ color:var(--obsidian); }
+  .foot-copy{ font-size:12.5px; color:var(--gray-400); margin-top:6px; }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 860px){
+    .problem-grid{ grid-template-columns:1fr; gap:40px; }
+    .card-grid{ grid-template-columns:repeat(2,1fr); }
+    .mock-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr; }
+    .step-connector{ display:none; }
+  }
+  @media (max-width: 520px){
+    .wrap{ padding:0 20px; }
+    .hero{ padding:76px 0 60px; }
+    section{ padding:72px 0; }
+    .card-grid{ grid-template-columns:1fr; }
+    .nav-cta{ padding:8px 14px; font-size:13px; }
+    .cta-row{ flex-direction:column; align-items:stretch; }
+    .btn{ justify-content:center; }
+    .price-card{ padding:34px 24px; }
+    .foot-inner{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="logo"><span class="dot"></span>BEMA</div>
+    <a href="#" class="nav-cta" data-link="skool">Join the community</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="badge"><span class="pulse"></span>Modern Business English Community</span>
+
+    <h1 class="headline">Learn the language of <span class="u">modern business.</span></h1>
+    <p class="subhead">Business English for people building the future of AI, sales, marketing and online business.</p>
+
+    <div class="cta-row">
+      <a href="#" class="btn btn-primary" data-link="skool">
+        Start Your 7-Day Free Trial
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#" class="btn btn-secondary" data-link="pdf" target="_blank" rel="noopener">
+        Get the Free 100 Power Words Swipe File
+      </a>
+    </div>
+
+    <!-- signature element: the "Decoder" — BEMA's own content format, live on the page -->
+    <div class="decoder" id="decoder">
+      <div class="decoder-top">
+        <span></span><span></span><span></span>
+        <span class="lbl">the-decoder.bema</span>
+      </div>
+      <div class="decoder-line">
+        <span class="decoder-term" id="decoder-term">Scaling</span>
+        <span class="decoder-arrow">→</span>
+        <span class="decoder-def" id="decoder-def">Growing without breaking.</span>
+        <span class="decoder-cursor"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section id="problem">
+  <div class="wrap">
+    <div class="problem-grid">
+      <div class="reveal">
+        <span class="eyebrow">The problem</span>
+        <h2 class="h2">Most English courses teach you how to order coffee.<br>BEMA teaches you how modern businesses communicate.</h2>
+        <p class="section-head p" style="color:var(--gray-600); font-size:16px; margin-top:18px; max-width:480px;">
+          Traditional English education was built for tourists. The business world runs on a completely different vocabulary — and nobody's teaching it.
+        </p>
+
+        <div class="term-cloud">
+          <span class="term-pill">Scaling</span>
+          <span class="term-pill">Leads</span>
+          <span class="term-pill">Funnels</span>
+          <span class="term-pill">Conversion</span>
+          <span class="term-pill">AI Agents</span>
+          <span class="term-pill">Automation</span>
+          <span class="term-pill">Retention</span>
+        </div>
+      </div>
+
+      <div class="old-new reveal">
+        <div class="compare-row">
+          <span class="old">"Where is the train station?"</span>
+          <span class="arrow">→</span>
+          <span class="new">"What's our CAC on paid?"</span>
+        </div>
+        <div class="compare-row">
+          <span class="old">"I would like a coffee, please."</span>
+          <span class="arrow">→</span>
+          <span class="new">"Let's automate the follow-up."</span>
+        </div>
+        <div class="compare-row">
+          <span class="old">"How is the weather today?"</span>
+          <span class="arrow">→</span>
+          <span class="new">"Our funnel is leaking at step two."</span>
+        </div>
+        <div class="compare-row">
+          <span class="old">"Nice to meet you."</span>
+          <span class="arrow">→</span>
+          <span class="new">"Let's scale this before Q4."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT IS BEMA ================= -->
+<section class="section-alt" id="what-is-bema">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What is BEMA</span>
+      <h2 class="h2">BEMA is not just an English course. It's a business language system.</h2>
+      <p class="lede">Seven pillars. One vocabulary. Everything you need to sound — and think — like a modern operator.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="pillar-card reveal">
+        <span class="num">01</span>
+        <h3>Words</h3>
+        <p>Learn the vocabulary used in modern companies.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="num">02</span>
+        <h3>Grammar</h3>
+        <p>Master professional communication.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="num">03</span>
+        <h3>Sales</h3>
+        <p>Learn persuasion, outreach and closing language.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="num">04</span>
+        <h3>Marketing</h3>
+        <p>Understand branding, content and growth.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="num">05</span>
+        <h3>Tools</h3>
+        <p>Learn the language behind modern business tools.</p>
+      </div>
+      <div class="pillar-card accent reveal">
+        <span class="num">06</span>
+        <h3>AI</h3>
+        <p>Understand AI concepts and workflows.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="num">07</span>
+        <h3>Metrics</h3>
+        <p>Learn the numbers behind growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMMUNITY ================= -->
+<section class="community" id="community">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Inside BEMA</span>
+      <h2 class="h2">Learn together. Build together.</h2>
+      <p class="lede">A live Skool community, not a static course. Real modules, real members, real progress.</p>
+    </div>
+
+    <div class="mock-grid">
+      <div class="mock-panel reveal">
+        <div class="mock-head"><span>module-04 · metrics</span><span>churn rate</span></div>
+        <div class="mock-row">
+          <div class="mock-avatar"></div>
+          <div>
+            <div class="mock-name">M19 — Churn Rate</div>
+            <div class="mock-sub">Completed by 214 members</div>
+          </div>
+          <span class="mock-tag">done</span>
+        </div>
+        <div class="mock-row">
+          <div class="mock-avatar" style="background:linear-gradient(135deg,#c9a84c,#111)"></div>
+          <div>
+            <div class="mock-name">M20 — Retention Rate</div>
+            <div class="mock-sub">In progress</div>
+          </div>
+          <span class="mock-tag">62%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" style="width:62%"></div></div>
+      </div>
+
+      <div class="mock-panel reveal">
+        <div class="mock-head"><span>community</span><span>live</span></div>
+        <div class="mock-row">
+          <div class="mock-avatar"></div>
+          <div>
+            <div class="mock-name">Member discussion</div>
+            <div class="mock-sub">"Finally understand what a 'lead magnet' actually is"</div>
+          </div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-avatar" style="background:linear-gradient(135deg,#3a3a3a,#111)"></div>
+          <div>
+            <div class="mock-name">Member discussion</div>
+            <div class="mock-sub">"Used 3 words from this week's lesson in a client email today"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how-it-works">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 class="h2">Three steps. No fluff.</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Learn</h3>
+        <p>Learn modern business concepts in English.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3>Practice</h3>
+        <p>Practice through quizzes, lessons and challenges.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3>Apply</h3>
+        <p>Apply the language in real business situations.</p>
+        <div class="step-connector"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="section-alt" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="h2" style="margin:0 auto;">One plan. Everything included.</h2>
+    </div>
+
+    <div class="price-wrap reveal">
+      <div class="price-card">
+        <div class="price-name">BEMA COMMUNITY</div>
+        <div class="price-amount">$10<span> / month</span></div>
+
+        <ul class="price-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Full community access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Business English lessons</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>AI, sales and marketing vocabulary</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Interactive quizzes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Templates and resources</li>
+        </ul>
+
+        <a href="#" class="btn btn-primary" data-link="skool">Start 7-Day Free Trial</a>
+        <p class="price-note">Cancel anytime. No contracts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="reveal" style="display:flex; flex-direction:column; align-items:center;">
+      <h2 class="h2">Ready to speak the language of modern business?</h2>
+      <a href="#" class="btn btn-primary" data-link="skool">Join BEMA</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <div class="logo"><span class="dot"></span>BEMA</div>
+      <div class="foot-copy">Business English Modern Application</div>
+    </div>
+
+    <div class="foot-links">
+      <a href="#" data-link="tiktok" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.75 2h3.1c.16 1.32.79 2.53 1.76 3.44a5.7 5.7 0 0 0 3.63 1.5v3.13a8.8 8.8 0 0 1-4.28-1.16v6.7c0 3.3-2.68 5.98-6 5.98a5.98 5.98 0 0 1-3.7-10.66 5.94 5.94 0 0 1 4.9-1.24v3.2a2.8 2.8 0 0 0-2.02.1 2.8 2.8 0 1 0 3.96 2.55V2z"/></svg>
+        TikTok
+      </a>
+      <a href="#" data-link="skool" style="font-weight:600;">Join BEMA on Skool</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ======================================================================
+   LINKS CONFIG — edit these three values, nothing else needs to change.
+   ====================================================================== */
+const LINKS = {
+  skool:  "https://www.skool.com/business-english-mastery-2233/about",
+  tiktok: "https://www.tiktok.com/@businessenglishmodernapp",
+  pdf:    "./bema-power-words-swipe-file.pdf" // upload this PDF next to index.html
+};
+
+document.querySelectorAll("[data-link]").forEach(el => {
+  const key = el.getAttribute("data-link");
+  if (LINKS[key]) el.setAttribute("href", LINKS[key]);
+});
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add("is-visible");
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ---------- decoder ticker (signature element) ---------- */
+const decoderData = [
+  ["Scaling", "Growing without breaking."],
+  ["Funnel", "The path from stranger to customer."],
+  ["Retention", "Keeping the customers you already have."],
+  ["Lead", "Someone who might become a customer."],
+  ["Conversion", "The moment interest becomes action."],
+  ["AI Agent", "Software that acts on your behalf."],
+  ["Churn", "How fast you're losing customers."]
+];
+let dIndex = 0;
+const termEl = document.getElementById("decoder-term");
+const defEl = document.getElementById("decoder-def");
+
+function swapDecoder(){
+  const el1 = termEl, el2 = defEl;
+  [el1, el2].forEach(el => el.style.opacity = 0);
+  setTimeout(() => {
+    dIndex = (dIndex + 1) % decoderData.length;
+    termEl.textContent = decoderData[dIndex][0];
+    defEl.textContent = decoderData[dIndex][1];
+    [el1, el2].forEach(el => el.style.opacity = 1);
+  }, 260);
+}
+[termEl, defEl].forEach(el => el.style.transition = "opacity .26s ease");
+setInterval(swapDecoder, 3200);
+</script>
+
+</body>
+</html>
